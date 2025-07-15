@@ -2,13 +2,23 @@ services:
   - type: worker
     name: crypto-data-fetcher
     runtime: python
-    buildCommand: ""
-    startCommand: python real_time_fetcher.py
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python real_time_fetcher.py"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
           name: crypto-db
           property: connectionString
+      - key: KRAKEN_API_KEY
+        value: 6KhRrsqtn5BJmZZho/gh58FR+HJUA+Aa4Qn1lL78nAwyc2QK+ukAfbEx
+      - key: KRAKEN_API_SECRET
+        value: 3b50Z+OXN3AHUPx1W2mvD7zBlLhzsJj1jc4qQxKLGc9Ej18J3KPUA+j+hztVmPqI8s5fb5iB3pmNyNr+hfTi/g==
+      - key: LUNO_API_KEY
+        value: cuqwp8aw9bttn
+      - key: LUNO_API_SECRET
+        value: Jf0ROETQobjutJoiGEqTRgZkl0hxExwQzhL0vgEhfDg
+      - key: FOREX_API_KEY
+        value: fd3abafdc9aae353413bf273115eb1e1
 
 databases:
   - name: crypto-db
