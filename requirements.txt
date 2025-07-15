@@ -1,0 +1,9 @@
+ccxt
+requests
+pandas
+sqlalchemy 
+datetime
+time
+traceback
+sqlalchemy
+os
