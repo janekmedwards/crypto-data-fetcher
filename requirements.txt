@@ -4,4 +4,6 @@ pandas
 sqlalchemy 
 datetime
 sqlalchemy
+logging
+psycopg2-binary
 
