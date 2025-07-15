@@ -3,6 +3,5 @@ requests
 pandas
 sqlalchemy 
 datetime
-traceback
 sqlalchemy
 os
