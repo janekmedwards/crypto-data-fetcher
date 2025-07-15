@@ -8,6 +8,7 @@ from sqlalchemy import create_engine, Column, Integer, Float, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import os
+import logging
 
 Base = declarative_base()
 
@@ -184,6 +185,8 @@ class RealTimeData(Base):
 
 class RealTimeFetcher:
     def __init__(self):
+        # Set up logging
+        logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s: %(message)s')
         # API Keys stored directly in the script
         kraken_api_key = os.getenv("KRAKEN_API_KEY")
         kraken_api_secret = os.getenv("KRAKEN_API_KEY_SECRET")
@@ -1131,6 +1134,7 @@ class RealTimeFetcher:
                 )
                 session.add(entry)
                 session.commit()
+                logging.info(f"Data stored successfully at {entry.timestamp}")
                 if forward_arbitrage and abs(forward_arbitrage) > 0.5:
                     print(f"Significant arbitrage opportunity (Kraken-Luno): {forward_arbitrage:.2f}%")
                 if kraken_bitbns_arbitrage and abs(kraken_bitbns_arbitrage) > 0.5:
